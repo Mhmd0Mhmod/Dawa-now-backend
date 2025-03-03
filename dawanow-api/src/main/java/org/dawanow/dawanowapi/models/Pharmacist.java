@@ -20,6 +20,9 @@ public class Pharmacist {
     @Column(nullable = false)
     private String hashedPassword;
 
+    @Column(nullable = false)
+    private String pharmacyName;
+
     @Column
     private String workPermit;
 
@@ -29,6 +32,8 @@ public class Pharmacist {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private VerificationStatus status = VerificationStatus.PENDING;
+
+
 
     @Column
     private Long ownerId; // Pharmacy owner

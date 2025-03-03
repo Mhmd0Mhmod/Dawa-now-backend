@@ -20,6 +20,8 @@ public class Provider {
     @Column(nullable = false)
     private String hashedPassword;
 
+    @Column(nullable = false)
+    private String providerName;
     @Column
     private String workPermit;
 

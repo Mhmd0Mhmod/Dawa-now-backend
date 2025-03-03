@@ -4,9 +4,6 @@ import org.dawanow.dawanowapi.dto.RegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.RegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
-import org.locationtech.jts.geom.Point;
-import org.springframework.data.jpa.repository.Query;
-
 
 import java.util.List;
 
