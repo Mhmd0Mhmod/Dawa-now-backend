@@ -35,8 +35,10 @@ CREATE TABLE providers (
 
 
 CREATE TABLE delivery_persons (
-    id INT PRIMARY KEY,
-    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
+  id INT PRIMARY KEY,
+  location_coordinates POINT NOT NULL SRID 4326,
+  is_available BOOLEAN DEFAULT TRUE,
+  FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 
