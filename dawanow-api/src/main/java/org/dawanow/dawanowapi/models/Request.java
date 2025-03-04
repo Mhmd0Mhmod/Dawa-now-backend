@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Point;
 
 
 @Entity
-@Table(name = "requests")
+@Table(name = "requestes")
 @Getter
 @Setter
 public class Request {
@@ -33,12 +33,14 @@ public class Request {
     @Column(name = "response", columnDefinition = "JSON")
     private String response;
 
-    @Column(name = "request_status", nullable = false, length = 50)
-    private String requestStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RequestStatus requestStatus = RequestStatus.Pending;
 
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
 
-    @Column(name = "request_type", nullable = false, length = 50)
-    private String requestType;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RequestType requestType = RequestType.To_Pharmacy ;
 }

@@ -11,14 +11,12 @@ import org.locationtech.jts.geom.Point;
 @Table(name = "pharmacists")
 public class Pharmacist {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false)
-    private String hashedPassword;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
 
     @Column(nullable = false)
     private String pharmacyName;
@@ -33,8 +31,6 @@ public class Pharmacist {
     @Column(nullable = false)
     private VerificationStatus status = VerificationStatus.PENDING;
 
-
-
     @Column
-    private Long ownerId; // Pharmacy owner
+    private Long ownerId;
 }

@@ -11,17 +11,16 @@ import org.locationtech.jts.geom.Point;
 @Table(name = "providers")
 public class Provider {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false)
-    private String hashedPassword;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
 
     @Column(nullable = false)
     private String providerName;
+
     @Column
     private String workPermit;
 
