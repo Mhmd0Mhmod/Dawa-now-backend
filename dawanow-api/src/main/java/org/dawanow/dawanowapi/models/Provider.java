@@ -31,6 +31,4 @@ public class Provider {
     @Column(nullable = false)
     private VerificationStatus status = VerificationStatus.PENDING;
 
-    @Column
-    private Long ownerId;
 }

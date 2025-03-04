@@ -18,7 +18,7 @@ public class UserRegisterRequestDTO {
     private Long ownerId;
     private PharmacyRegisterRequestDTO pharmacyDetails = null;
     private DeliveryRegisterRequestDTO deliveryPersonDetails = null;
-    private ProviderRegisterResponseDTO providerDetails = null;
+    private ProviderRegisterRequestDTO providerDetails = null;
 
     public UserRegisterRequestDTO(String username, String email, String phoneNumber, String password, UserRole userRole, Long ownerId, PharmacyRegisterRequestDTO pharmacyDetails) {
         this.username = username;
@@ -49,7 +49,7 @@ public class UserRegisterRequestDTO {
         this.deliveryPersonDetails = deliveryPersonDetails;
     }
 
-    public UserRegisterRequestDTO(String username, String email, String phoneNumber, String password, UserRole userRole, Long ownerId, ProviderRegisterResponseDTO providerDetails) {
+    public UserRegisterRequestDTO(String username, String email, String phoneNumber, String password, UserRole userRole, Long ownerId, ProviderRegisterRequestDTO providerDetails) {
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;

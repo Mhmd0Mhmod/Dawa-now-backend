@@ -4,10 +4,7 @@ import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
-import org.dawanow.dawanowapi.services.CustomerService;
-import org.dawanow.dawanowapi.services.DeliveryPersonService;
-import org.dawanow.dawanowapi.services.PharmacistService;
-import org.dawanow.dawanowapi.services.UserService;
+import org.dawanow.dawanowapi.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,6 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PharmacistService pharmacistService;
+
+    @Autowired
+    private ProviderService providerService;
+
 
     @Autowired
     private DeliveryPersonService deliveryPersonService;
@@ -111,20 +112,17 @@ public class UserServiceImpl implements UserService {
                 break;
 
             case Provider:
-                // Handle Provider role logic
+                if (request.getProviderDetails() == null) {
+                    throw new RuntimeException("Provider details are required for providers");
+                }
+                response.setProviderDetails(
+                        providerService.registerProvider(
+                                savedUser, request.getProviderDetails()));
                 break;
 
             case Customer:
                 customerService.registerCustomer(user);
                 break;
-
-            case Admin:
-            case Pharmacist_Admin:
-            case Delivery_Admin:
-            case Provider_Admin:
-                // Handle Admin roles logic (if needed)
-                break;
-
             default:
                 throw new RuntimeException("Unsupported user role: " + savedUser.getUserRole());
         }
