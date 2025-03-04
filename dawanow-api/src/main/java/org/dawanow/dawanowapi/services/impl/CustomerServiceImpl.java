@@ -1,7 +1,11 @@
 package org.dawanow.dawanowapi.services.impl;
 
 import org.dawanow.dawanowapi.dto.NearestPharmacyDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.models.Customer;
 import org.dawanow.dawanowapi.models.Pharmacist;
+import org.dawanow.dawanowapi.models.User;
+import org.dawanow.dawanowapi.repositories.CustomerRepository;
 import org.dawanow.dawanowapi.repositories.RequestRepository;
 import org.dawanow.dawanowapi.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     RequestRepository requestRepository;
+    @Autowired
+    CustomerRepository customerRepository;
 
 
     @Override
@@ -24,6 +30,13 @@ public class CustomerServiceImpl implements CustomerService {
                 (String) row[0],               // pharmacyName
                 ((Number) row[1]).doubleValue() // distanceMeters
         )).toList();
+    }
+
+    @Override
+    public void registerCustomer(User user) {
+        Customer customer = new Customer();
+        customer.setUser(user);
+        customerRepository.save(customer);
     }
 
 }

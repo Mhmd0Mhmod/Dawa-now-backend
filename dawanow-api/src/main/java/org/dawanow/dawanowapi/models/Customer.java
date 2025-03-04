@@ -16,4 +16,6 @@ public class Customer {
     @MapsId
     @JoinColumn(name = "id")
     private User user;
+
+
 }
