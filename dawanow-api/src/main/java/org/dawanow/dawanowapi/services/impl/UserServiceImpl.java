@@ -1,13 +1,16 @@
 package org.dawanow.dawanowapi.services.impl;
-import org.dawanow.dawanowapi.dto.RegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.RegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
+import org.dawanow.dawanowapi.services.CustomerService;
+import org.dawanow.dawanowapi.services.PharmacistService;
 import org.dawanow.dawanowapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +22,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PharmacistService pharmacistService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -43,17 +52,19 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsersByRoleAndOwner(UserRole role, int ownerId) {
         return userRepository.findByUserRoleAndOwnerId(role, ownerId);
     }
+    @Transactional
 
-    public RegisterResponseDTO registerUser(RegisterRequestDTO request, UserRole requesterRole) {
+    public UserRegisterResponseDTO registerUser(UserRegisterRequestDTO request, UserRole requesterRole) {
         // Validate the requester's role
         if (request.getUserRole() == UserRole.Admin && requesterRole != UserRole.Admin) {
             throw new RuntimeException("Only Admins can create Admin users");
         }
         // Check if the username or email already exists
+        System.out.println(request);
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
-        if (userRepository.existsByEmail(request.getEmail())) {
+        if (request.getEmail() != null && userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
@@ -69,15 +80,49 @@ public class UserServiceImpl implements UserService {
         // Save the user to the database
         User savedUser = userRepository.save(user);
 
+        UserRegisterResponseDTO response = new UserRegisterResponseDTO(
+                savedUser.getId(),
+                savedUser.getUsername(),
+                savedUser.getEmail(),
+                savedUser.getPhoneNumber(),
+                savedUser.getUserRole(),
+                savedUser.getOwnerId()
+        );
+
+        switch (savedUser.getUserRole()) {
+            case Pharmacist:
+                if (request.getPharmacyDetails() == null) {
+                    throw new RuntimeException("Pharmacy details are required for Pharmacists");
+                }
+                response.setPharmacyDetails(
+                        pharmacistService.registerPharmacist(
+                                savedUser, request.getPharmacyDetails()));
+                break;
+
+            case Delivery:
+                // Handle Delivery role logic
+                break;
+
+            case Provider:
+                // Handle Provider role logic
+                break;
+
+            case Customer:
+                customerService.registerCustomer(user);
+                break;
+
+            case Admin:
+            case Pharmacist_Admin:
+            case Delivery_Admin:
+            case Provider_Admin:
+                // Handle Admin roles logic (if needed)
+                break;
+
+            default:
+                throw new RuntimeException("Unsupported user role: " + savedUser.getUserRole());
+        }
         // Create the response
-        RegisterResponseDTO response = new RegisterResponseDTO();
-        response.setUserId(savedUser.getId());
-        response.setUsername(savedUser.getUsername());
-        response.setEmail(savedUser.getEmail());
-        response.setPhoneNumber(savedUser.getPhoneNumber());
-        response.setUserRole(savedUser.getUserRole());
-        response.setOwnerId(savedUser.getOwnerId());
+
         return response;
     }
-
 }

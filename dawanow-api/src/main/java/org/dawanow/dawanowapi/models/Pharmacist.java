@@ -30,7 +30,4 @@ public class Pharmacist {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private VerificationStatus status = VerificationStatus.PENDING;
-
-    @Column
-    private Long ownerId;
 }

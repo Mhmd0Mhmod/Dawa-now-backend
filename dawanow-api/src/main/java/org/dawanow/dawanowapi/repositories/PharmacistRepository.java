@@ -22,4 +22,5 @@ public interface PharmacistRepository extends JpaRepository<Pharmacist, Long> {
     List<Object[]> getNearestProviders(@Param("pharmacyId") int pharmacyId, @Param("radius") float radius);
 
 
+
 }

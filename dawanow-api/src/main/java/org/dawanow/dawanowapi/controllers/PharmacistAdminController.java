@@ -1,9 +1,21 @@
 package org.dawanow.dawanowapi.controllers;
 
+import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.PharmacyRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.models.Pharmacist;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
+import org.dawanow.dawanowapi.models.VerificationStatus;
+import org.dawanow.dawanowapi.repositories.PharmacistRepository;
+import org.dawanow.dawanowapi.repositories.UserRepository;
+import org.dawanow.dawanowapi.services.PharmacistAdminService;
+import org.dawanow.dawanowapi.services.impl.LocationServiceImpl;
+import org.dawanow.dawanowapi.services.PharmacistService;
 import org.dawanow.dawanowapi.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +24,17 @@ import java.util.List;
 @RequestMapping("/pharmacist-admins")
 public class PharmacistAdminController {
 
-    private final UserService userService;
 
-    public PharmacistAdminController(UserService userService) {
+    @Autowired
+    private final UserService userService;
+    @Autowired
+    private final PharmacistAdminService pharmacistAdminService;
+
+
+    public PharmacistAdminController(UserService userService, UserRepository userRepository, PharmacistRepository pharmacistRepository, PharmacistAdminService pharmacistAdminService) {
         this.userService = userService;
+        this.pharmacistAdminService = pharmacistAdminService;
+
     }
 
     @GetMapping
@@ -27,6 +46,14 @@ public class PharmacistAdminController {
     public ResponseEntity<List<User>> getPharmacists(@PathVariable int adminId) {
         return ResponseEntity.ok(userService.getUsersByRoleAndOwner(UserRole.Pharmacist, adminId));
     }
+
+    @PostMapping("/{adminId}/register")
+    public UserRegisterResponseDTO registerPharmacyBranch(@PathVariable int adminId,
+                                                          @RequestBody PharmacyRegisterRequestDTO pharmacyRegisterRequestDTO) {
+
+        return pharmacistAdminService.registerPharmacy(adminId,pharmacyRegisterRequestDTO);
+    }
+
 
     
 }
