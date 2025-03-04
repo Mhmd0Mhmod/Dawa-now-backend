@@ -2,8 +2,8 @@ package org.dawanow.dawanowapi.controllers;
 
 import org.dawanow.dawanowapi.dto.AuthenticationRequestDTO;
 import org.dawanow.dawanowapi.dto.AuthenticationResponseDTO;
-import org.dawanow.dawanowapi.dto.RegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.RegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
@@ -66,13 +66,13 @@ public class AuthController {
 
     }
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponseDTO> registerUser(@RequestBody RegisterRequestDTO request) {
+    public ResponseEntity<UserRegisterResponseDTO> registerUser(@RequestBody UserRegisterRequestDTO request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserRole requesterRole = UserRole.Customer; // Default role
         if (authentication != null && authentication.getPrincipal() instanceof UserPrincipal) {
             requesterRole = ((UserPrincipal) authentication.getPrincipal()).getRole();
         }
-        RegisterResponseDTO response = userService.registerUser(request,requesterRole);
+        UserRegisterResponseDTO response = userService.registerUser(request,requesterRole);
         return ResponseEntity.ok(response);
     }
 }

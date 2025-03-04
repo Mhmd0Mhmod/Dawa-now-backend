@@ -2,6 +2,7 @@ package org.dawanow.dawanowapi.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Table(name = "delivery_persons")
@@ -17,6 +18,11 @@ public class DeliveryPerson {
     @JoinColumn(name = "id")
     private User user;
 
-    @Column
-    private Long ownerId;
+
+    @Column(nullable = false, columnDefinition = "POINT SRID 4326")
+    private Point locationCoordinates;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean isAvailable = true;
+
 }
