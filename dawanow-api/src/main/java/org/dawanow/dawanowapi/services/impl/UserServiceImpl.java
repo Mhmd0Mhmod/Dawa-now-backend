@@ -5,6 +5,7 @@ import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
 import org.dawanow.dawanowapi.services.CustomerService;
+import org.dawanow.dawanowapi.services.DeliveryPersonService;
 import org.dawanow.dawanowapi.services.PharmacistService;
 import org.dawanow.dawanowapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PharmacistService pharmacistService;
+
+    @Autowired
+    private DeliveryPersonService deliveryPersonService;
 
     @Autowired
     private CustomerService customerService;
@@ -100,7 +104,10 @@ public class UserServiceImpl implements UserService {
                 break;
 
             case Delivery:
-                // Handle Delivery role logic
+                response.setDeliveryDetails(
+                        deliveryPersonService.registerDeliveryPerson(
+                                savedUser,request.getDeliveryPersonDetails()
+                        ));
                 break;
 
             case Provider:

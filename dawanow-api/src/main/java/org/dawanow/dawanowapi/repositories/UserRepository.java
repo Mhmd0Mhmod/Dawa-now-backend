@@ -19,28 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUserRole(String role);
 
     List<User> findByUserRoleAndOwnerId(UserRole role, int ownerId);
-    @Query(value = """
-    SELECT pr.id AS provider_id, pr.username,
-           ST_Distance_Sphere(ph.location_coordinates, pr.location_coordinates) AS distance_meters
-    FROM pharmacists ph
-    JOIN providers pr
-    ON ST_Distance_Sphere(ph.location_coordinates, pr.location_coordinates) <= :radius
-    WHERE ph.id = :pharmacyId
-    ORDER BY distance_meters ASC
-    """, nativeQuery = true)
-    List<User> getNearestProviders(@Param("pharmacyId") int pharmacyId, @Param("radius") float radius);
 
-
-    @Query(value = """
-    SELECT ph.id AS pharmacy_id, ph.username,
-           ST_Distance_Sphere(req.location_coordinates, ph.location_coordinates) AS distance_meters
-    FROM requests req
-    JOIN pharmacists ph
-    ON ST_Distance_Sphere(req.location_coordinates, ph.location_coordinates) <= :radius
-    WHERE req.id = :requestId
-    ORDER BY distance_meters ASC
-    """, nativeQuery = true)
-    List<User> getNearestPharmacies(@Param("requestId") int requestId, @Param("radius") float radius);
 
 
 
