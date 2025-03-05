@@ -28,17 +28,17 @@ public class PharmacistAdminServiceImpl implements PharmacistAdminService {
     @Override
     public UserRegisterResponseDTO registerPharmacy(long adminId, PharmacyRegisterRequestDTO pharmacyRegisterRequestDTO) {
         return userService.registerUser(
-                new UserRegisterRequestDTO(
-                        pharmacyRegisterRequestDTO.getUsername(),
-                        null,
-                        pharmacyRegisterRequestDTO.getPhoneNumber(),
-                        pharmacyRegisterRequestDTO.getPassword(),
-                        UserRole.Pharmacist,
-                        adminId,
-                        pharmacyRegisterRequestDTO
-                ),
+                UserRegisterRequestDTO.builder()
+                        .username(pharmacyRegisterRequestDTO.getUsername())
+                        .phoneNumber(pharmacyRegisterRequestDTO.getPhoneNumber())
+                        .password(pharmacyRegisterRequestDTO.getPassword())
+                        .userRole(  UserRole.Pharmacist)
+                        .ownerId(adminId)
+                        .pharmacyDetails(pharmacyRegisterRequestDTO)
+                        .build(),
                 UserRole.Pharmacist_Admin
         );
+
     }
 
 }

@@ -1,6 +1,5 @@
 package org.dawanow.dawanowapi.services.impl;
-import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.*;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
@@ -58,14 +57,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUserRoleAndOwnerId(role, ownerId);
     }
     @Transactional
-
     public UserRegisterResponseDTO registerUser(UserRegisterRequestDTO request, UserRole requesterRole) {
-        // Validate the requester's role
         if (request.getUserRole() == UserRole.Admin && requesterRole != UserRole.Admin) {
             throw new RuntimeException("Only Admins can create Admin users");
         }
-        // Check if the username or email already exists
-        System.out.println(request);
+
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
@@ -73,7 +69,6 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Email already exists");
         }
 
-        // Create a new user
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
@@ -82,52 +77,51 @@ public class UserServiceImpl implements UserService {
         user.setUserRole(request.getUserRole());
         user.setOwnerId(request.getOwnerId());
 
-        // Save the user to the database
         User savedUser = userRepository.save(user);
 
-        UserRegisterResponseDTO response = new UserRegisterResponseDTO(
-                savedUser.getId(),
-                savedUser.getUsername(),
-                savedUser.getEmail(),
-                savedUser.getPhoneNumber(),
-                savedUser.getUserRole(),
-                savedUser.getOwnerId()
-        );
+        // Register additional details based on the user role
+        PharmacyRegisterResponseDTO pharmacyDetails = null;
+        DeliveryRegisterResponseDTO deliveryDetails = null;
+        ProviderRegisterResponseDTO providerDetails = null;
 
         switch (savedUser.getUserRole()) {
             case Pharmacist:
                 if (request.getPharmacyDetails() == null) {
                     throw new RuntimeException("Pharmacy details are required for Pharmacists");
                 }
-                response.setPharmacyDetails(
-                        pharmacistService.registerPharmacist(
-                                savedUser, request.getPharmacyDetails()));
+                pharmacyDetails = pharmacistService.registerPharmacist(savedUser, request.getPharmacyDetails());
                 break;
 
             case Delivery:
-                response.setDeliveryDetails(
-                        deliveryPersonService.registerDeliveryPerson(
-                                savedUser,request.getDeliveryPersonDetails()
-                        ));
+                deliveryDetails = deliveryPersonService.registerDeliveryPerson(savedUser, request.getDeliveryPersonDetails());
                 break;
 
             case Provider:
                 if (request.getProviderDetails() == null) {
                     throw new RuntimeException("Provider details are required for providers");
                 }
-                response.setProviderDetails(
-                        providerService.registerProvider(
-                                savedUser, request.getProviderDetails()));
+                providerDetails = providerService.registerProvider(savedUser, request.getProviderDetails());
                 break;
 
             case Customer:
                 customerService.registerCustomer(user);
                 break;
+
             default:
                 throw new RuntimeException("Unsupported user role: " + savedUser.getUserRole());
         }
-        // Create the response
 
-        return response;
+        return UserRegisterResponseDTO.builder()
+                .userId(savedUser.getId())
+                .username(savedUser.getUsername())
+                .email(savedUser.getEmail())
+                .phoneNumber(savedUser.getPhoneNumber())
+                .userRole(savedUser.getUserRole())
+                .ownerId(savedUser.getOwnerId())
+                .pharmacyDetails(pharmacyDetails)  // Now assigned directly in builder
+                .deliveryDetails(deliveryDetails)
+                .providerDetails(providerDetails)
+                .build();
     }
+
 }
