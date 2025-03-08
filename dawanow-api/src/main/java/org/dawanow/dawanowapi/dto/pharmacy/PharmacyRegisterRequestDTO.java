@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.dto;
+package org.dawanow.dawanowapi.dto.pharmacy;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

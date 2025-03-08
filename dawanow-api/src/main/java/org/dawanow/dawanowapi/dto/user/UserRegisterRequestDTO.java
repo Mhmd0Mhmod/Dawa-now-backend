@@ -1,10 +1,13 @@
-package org.dawanow.dawanowapi.dto;
+package org.dawanow.dawanowapi.dto.user;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.provider.ProviderRegisterRequestDTO;
 import org.dawanow.dawanowapi.models.UserRole;
 
 @Data

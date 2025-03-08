@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.dto;
+package org.dawanow.dawanowapi.dto.provider;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PharmacyRegisterResponseDTO {
-    private String pharmacyName;
+public class ProviderRegisterResponseDTO {
+    private String providerName;
     private String workPermit;
     private double longitude;
     private double latitude;

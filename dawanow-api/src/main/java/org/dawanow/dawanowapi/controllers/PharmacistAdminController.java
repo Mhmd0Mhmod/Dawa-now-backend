@@ -1,21 +1,15 @@
 package org.dawanow.dawanowapi.controllers;
 
-import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterResponseDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
-import org.dawanow.dawanowapi.models.Pharmacist;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
-import org.dawanow.dawanowapi.models.VerificationStatus;
 import org.dawanow.dawanowapi.repositories.PharmacistRepository;
 import org.dawanow.dawanowapi.repositories.UserRepository;
 import org.dawanow.dawanowapi.services.PharmacistAdminService;
-import org.dawanow.dawanowapi.services.impl.LocationServiceImpl;
-import org.dawanow.dawanowapi.services.PharmacistService;
 import org.dawanow.dawanowapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

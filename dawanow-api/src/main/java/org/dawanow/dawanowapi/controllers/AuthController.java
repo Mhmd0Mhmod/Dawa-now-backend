@@ -1,9 +1,9 @@
 package org.dawanow.dawanowapi.controllers;
 
-import org.dawanow.dawanowapi.dto.AuthenticationRequestDTO;
-import org.dawanow.dawanowapi.dto.AuthenticationResponseDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.auth.AuthenticationRequestDTO;
+import org.dawanow.dawanowapi.dto.auth.AuthenticationResponseDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NearestPharmacyDTO {
+    private int id;
     private String pharmacyName;
     private Double distanceMeters;
 }
