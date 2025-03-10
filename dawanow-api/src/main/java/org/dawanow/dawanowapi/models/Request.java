@@ -1,30 +1,38 @@
 package org.dawanow.dawanowapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.sql.Timestamp;
+
+import lombok.ToString;
+import org.dawanow.dawanowapi.dto.request.MedicinePriceDTO;
 import org.locationtech.jts.geom.Point;
 
 
 @Entity
-@Table(name = "requestes")
+@Table(name = "requests")
 @Getter
 @Setter
+@ToString
 public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) // Lazy loading
     @JoinColumn(name = "sender_id", nullable = false)
+    @JsonIgnore // Prevent Jackson from serializing this field
     private User sender;
 
     @Column(name = "location_coordinates", columnDefinition = "POINT SRID 4326", nullable = false)
     private Point locationCoordinates;
 
-    @Column(name = "receiver_ids", columnDefinition = "JSON", nullable = false)
+    @Column(name = "receiver_ids", columnDefinition = "JSON")
     private String receiverIds;
 
     @Column(name = "request", columnDefinition = "JSON", nullable = false)
@@ -43,4 +51,7 @@ public class Request {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RequestType requestType = RequestType.To_Pharmacy ;
+
+
+
 }

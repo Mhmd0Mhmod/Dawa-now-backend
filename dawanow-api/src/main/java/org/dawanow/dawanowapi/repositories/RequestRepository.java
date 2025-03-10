@@ -11,7 +11,7 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request, Long> {
 
     @Query(value = """
-    SELECT ph.pharmacy_name,
+    SELECT ph.id,ph.pharmacy_name,
            ST_Distance_Sphere(req.location_coordinates, ph.location_coordinates) AS distance_meters
     FROM requests req
     JOIN pharmacists ph
@@ -19,5 +19,5 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     WHERE req.id = :requestId
     ORDER BY distance_meters ASC
     """, nativeQuery = true)
-    List<Object[]> getNearestPharmacies(@Param("requestId") int requestId, @Param("radius") float radius);
+    List<Object[]> getNearestPharmacies(@Param("requestId") long requestId, @Param("radius") double radius);
 }

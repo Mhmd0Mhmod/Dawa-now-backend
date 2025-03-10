@@ -1,7 +1,7 @@
 package org.dawanow.dawanowapi.services.impl;
 
-import org.dawanow.dawanowapi.dto.DeliveryRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.DeliveryRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.DeliveryPerson;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.repositories.DeliveryPersonRepository;

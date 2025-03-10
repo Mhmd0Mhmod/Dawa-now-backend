@@ -2,16 +2,18 @@ package org.dawanow.dawanowapi.services;
 
 
 import org.dawanow.dawanowapi.dto.NearestPharmacyDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterResponseDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.request.MedicinePriceDTO;
+import org.dawanow.dawanowapi.dto.request.RequestResponseDTO;
+import org.dawanow.dawanowapi.models.Request;
 import org.dawanow.dawanowapi.models.User;
 
 import java.util.List;
 
 public interface CustomerService {
 
-    List<NearestPharmacyDTO> getNearestPharmacies(int requestId, float radius );
+    List<NearestPharmacyDTO> getNearestPharmacies(long requestId, double radius );
     void registerCustomer(User user);
-
+    RequestResponseDTO createRequestToPharmacies(long senderId, double latitude,
+                                      double longitude, List<MedicinePriceDTO> requestedData,
+                                      double desiredDistance);
 }

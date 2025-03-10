@@ -33,7 +33,7 @@ public class PharmacistController {
     @GetMapping("/nearest-providers")
     public ResponseEntity<List<NearestProviderDTO>> getNearestPharmacies(
             @RequestParam int pharmacyId,
-            @RequestParam float radius) {
+            @RequestParam double radius) {
         return ResponseEntity.ok(pharmacistService.getNearestProviders(pharmacyId, radius));
     }
 

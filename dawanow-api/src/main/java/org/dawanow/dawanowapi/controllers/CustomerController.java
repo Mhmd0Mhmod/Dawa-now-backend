@@ -2,16 +2,16 @@ package org.dawanow.dawanowapi.controllers;
 
 
 import org.dawanow.dawanowapi.dto.NearestPharmacyDTO;
+import org.dawanow.dawanowapi.dto.request.RequestResponseDTO;
+import org.dawanow.dawanowapi.dto.request.RequestSubmissionDTO;
+import org.dawanow.dawanowapi.models.Request;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.services.CustomerService;
 import org.dawanow.dawanowapi.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,9 +35,22 @@ public class CustomerController {
 
     @GetMapping("/nearest-pharmacies")
     public ResponseEntity<List<NearestPharmacyDTO>> getNearestPharmacies(
-            @RequestParam int requestId,
-            @RequestParam float radius) {
+            @RequestParam long requestId,
+            @RequestParam double radius) {
         return ResponseEntity.ok(customerService.getNearestPharmacies(requestId, radius));
     }
+    @PostMapping("/create-request")
+    public ResponseEntity<RequestResponseDTO> createRequest(@RequestBody RequestSubmissionDTO requestDTO) {
+        RequestResponseDTO request = customerService.createRequestToPharmacies(
+                requestDTO.getSenderId(),
+                requestDTO.getLongitude(),
+                requestDTO.getLatitude(),
+                requestDTO.getRequestedData(),
+                requestDTO.getDesiredDistance()
+        );
+
+        return ResponseEntity.ok(request);
+    }
+
 
 }

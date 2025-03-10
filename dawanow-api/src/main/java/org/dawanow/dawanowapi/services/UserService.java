@@ -1,7 +1,7 @@
 package org.dawanow.dawanowapi.services;
 
-import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 

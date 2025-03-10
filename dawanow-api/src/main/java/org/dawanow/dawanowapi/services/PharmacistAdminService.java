@@ -1,8 +1,7 @@
 package org.dawanow.dawanowapi.services;
 
-import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterResponseDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 
 public interface PharmacistAdminService {
 

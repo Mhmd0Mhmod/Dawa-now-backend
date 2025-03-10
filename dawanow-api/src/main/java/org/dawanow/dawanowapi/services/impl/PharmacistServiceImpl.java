@@ -1,8 +1,8 @@
 package org.dawanow.dawanowapi.services.impl;
 
 import org.dawanow.dawanowapi.dto.NearestProviderDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.PharmacyRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.Pharmacist;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.VerificationStatus;
@@ -26,7 +26,7 @@ public class PharmacistServiceImpl implements PharmacistService {
     }
 
     @Override
-    public List<NearestProviderDTO> getNearestProviders(int pharmacyId, float radius) {
+    public List<NearestProviderDTO> getNearestProviders(int pharmacyId, double radius) {
         List<Object[]> results = pharmacistRepository.getNearestProviders(pharmacyId, radius);
         return results.stream().map(row -> new NearestProviderDTO(
                 (String) row[0],

@@ -21,7 +21,7 @@ public interface PharmacistRepository extends JpaRepository<Pharmacist, Long> {
     WHERE ph.id = :pharmacyId
     ORDER BY distance_meters ASC
     """, nativeQuery = true)
-    List<Object[]> getNearestProviders(@Param("pharmacyId") int pharmacyId, @Param("radius") float radius);
+    List<Object[]> getNearestProviders(@Param("pharmacyId") int pharmacyId, @Param("radius") double radius);
 
 
 

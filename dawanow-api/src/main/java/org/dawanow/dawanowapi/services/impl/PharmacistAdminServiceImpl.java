@@ -1,8 +1,8 @@
 package org.dawanow.dawanowapi.services.impl;
 
-import org.dawanow.dawanowapi.dto.PharmacyRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.UserRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.services.PharmacistAdminService;
 import org.dawanow.dawanowapi.services.UserService;

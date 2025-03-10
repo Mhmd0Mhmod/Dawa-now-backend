@@ -1,7 +1,7 @@
 package org.dawanow.dawanowapi.services.impl;
 
-import org.dawanow.dawanowapi.dto.ProviderRegisterRequestDTO;
-import org.dawanow.dawanowapi.dto.ProviderRegisterResponseDTO;
+import org.dawanow.dawanowapi.dto.provider.ProviderRegisterRequestDTO;
+import org.dawanow.dawanowapi.dto.provider.ProviderRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.Provider;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.VerificationStatus;
