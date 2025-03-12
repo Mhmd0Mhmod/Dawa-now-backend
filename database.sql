@@ -45,7 +45,7 @@ CREATE TABLE delivery_persons (
 CREATE TABLE medicines (
    id INT PRIMARY KEY AUTO_INCREMENT,
    trade_name VARCHAR(100),
-   price FLOAT NOT NULL,
+   price DECIMAL(10,2) NOT NULL,
    category VARCHAR(100) NOT NULL,
    form VARCHAR(100),
    active_ingredient TEXT,
@@ -56,6 +56,7 @@ CREATE TABLE requests (
     id INT PRIMARY KEY AUTO_INCREMENT,
     sender_id INT NOT NULL,
     location_coordinates POINT NOT NULL SRID 4326,
+    address TEXT NOT NULL,
     receiver_ids JSON NOT NULL,
     request JSON NOT NULL,
     response JSON,
@@ -68,7 +69,7 @@ CREATE TABLE requests (
 CREATE TABLE orders (
     id INT PRIMARY KEY AUTO_INCREMENT,
     request_id INT NOT NULL,
-    total_amount FLOAT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_delivery BOOLEAN NOT NULL,
     order_status VARCHAR(50) NOT NULL,

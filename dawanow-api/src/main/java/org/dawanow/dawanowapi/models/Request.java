@@ -32,6 +32,8 @@ public class Request {
     @Column(name = "location_coordinates", columnDefinition = "POINT SRID 4326", nullable = false)
     private Point locationCoordinates;
 
+    @Column(name = "address", nullable = false)
+    private String address;
     @Column(name = "receiver_ids", columnDefinition = "JSON")
     private String receiverIds;
 

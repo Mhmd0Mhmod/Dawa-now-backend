@@ -14,6 +14,7 @@ public interface CustomerService {
     List<NearestPharmacyDTO> getNearestPharmacies(long requestId, double radius );
     void registerCustomer(User user);
     RequestResponseDTO createRequestToPharmacies(long senderId, double latitude,
-                                      double longitude, List<MedicinePriceDTO> requestedData,
+                                      double longitude, String address,
+                                     List<MedicinePriceDTO> requestedData,
                                       double desiredDistance);
 }

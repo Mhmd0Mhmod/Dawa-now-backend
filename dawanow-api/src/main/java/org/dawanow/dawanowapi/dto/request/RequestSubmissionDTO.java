@@ -18,6 +18,7 @@ public class RequestSubmissionDTO {
     private long senderId;
     private double longitude;
     private double latitude;
+    private String address;
     private List<MedicinePriceDTO> requestedData;
     private double desiredDistance;
     private RequestStatus requestStatus = RequestStatus.Pending;

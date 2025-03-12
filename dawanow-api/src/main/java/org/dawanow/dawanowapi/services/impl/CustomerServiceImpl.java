@@ -55,7 +55,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public RequestResponseDTO createRequestToPharmacies(long senderId, double latitude,
-                                             double longitude, List<MedicinePriceDTO> requestedData,
+                                             double longitude, String address,
+                                             List<MedicinePriceDTO> requestedData,
                                              double desiredDistance) {
         Request request = new Request();
         request.setSender(userRepository.getReferenceById(senderId));
@@ -64,6 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
         request.setRequestData(convertToJson(requestedData));
 
         request.setLocationCoordinates(locationService.createPoint(longitude, latitude));
+        request.setAddress(address);
         request.setRequestStatus(RequestStatus.Pending);
 
         // Saving the request without receiverIds

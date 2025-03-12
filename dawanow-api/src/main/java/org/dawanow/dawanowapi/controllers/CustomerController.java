@@ -4,7 +4,6 @@ package org.dawanow.dawanowapi.controllers;
 import org.dawanow.dawanowapi.dto.NearestPharmacyDTO;
 import org.dawanow.dawanowapi.dto.request.RequestResponseDTO;
 import org.dawanow.dawanowapi.dto.request.RequestSubmissionDTO;
-import org.dawanow.dawanowapi.models.Request;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.services.CustomerService;
@@ -45,6 +44,7 @@ public class CustomerController {
                 requestDTO.getSenderId(),
                 requestDTO.getLongitude(),
                 requestDTO.getLatitude(),
+                requestDTO.getAddress(),
                 requestDTO.getRequestedData(),
                 requestDTO.getDesiredDistance()
         );
