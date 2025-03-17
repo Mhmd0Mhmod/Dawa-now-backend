@@ -17,4 +17,5 @@ public interface CustomerService {
                                       double longitude, String address,
                                      List<MedicinePriceDTO> requestedData,
                                       double desiredDistance);
+    void createOrder(Long requestId, Long pharmacistId, boolean isDelivery);
 }

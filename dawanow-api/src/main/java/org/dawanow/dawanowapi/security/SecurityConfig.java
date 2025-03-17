@@ -63,6 +63,9 @@ public class SecurityConfig {
                                 .requestMatchers("/provider-admins").hasRole("Admin")
                                 .requestMatchers("/customers").hasRole("Admin")
                                 .requestMatchers("/customers/**").hasRole("Admin")
+                                .requestMatchers("/pharmacists").hasRole("Admin")
+                                .requestMatchers("/pharmacists/**").hasRole("Admin")
+
                                 .requestMatchers("/pharmacist-admins/{adminId}/pharmacists").access(ownerAccessEvaluator)
                                 .requestMatchers("/delivery-admins/{adminId}/delivery-persons").access(ownerAccessEvaluator)
                                 .requestMatchers("/provider-admins/{adminId}/providers").access(ownerAccessEvaluator)

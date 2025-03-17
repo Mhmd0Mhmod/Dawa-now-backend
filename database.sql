@@ -37,7 +37,6 @@ CREATE TABLE providers (
 CREATE TABLE delivery_persons (
   id INT PRIMARY KEY,
   location_coordinates POINT NOT NULL SRID 4326,
-  is_available BOOLEAN DEFAULT TRUE,
   FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -85,7 +84,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (medicine_id) REFERENCES medicines(id) ON DELETE CASCADE
 );
-
 
 
 CREATE TABLE order_assignment (

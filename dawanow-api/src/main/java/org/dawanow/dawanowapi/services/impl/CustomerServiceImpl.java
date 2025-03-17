@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
         request.setSender(userRepository.getReferenceById(senderId));
 
         // Converting MedicinePriceDTO to json
-        request.setRequestData(convertToJson(requestedData));
+        request.setRequestData(convertMedicinePriceDtoToJson(requestedData));
 
         request.setLocationCoordinates(locationService.createPoint(longitude, latitude));
         request.setAddress(address);
@@ -89,10 +89,13 @@ public class CustomerServiceImpl implements CustomerService {
                 .toList();
 
         System.out.println(pharmacyResponses);
-        return mapToDto(request,pharmacyResponses);
+        // :: Check If he wants delivery first, if he wants then search for delivery if you found
+        // Then you can create order otherwise the order will not be done.
+
+        return mapToRequestResponseDTO(request,pharmacyResponses);
     }
 
-    private String convertToJson(List<MedicinePriceDTO> requestedData) {
+    private String convertMedicinePriceDtoToJson(List<MedicinePriceDTO> requestedData) {
         try {
             return new ObjectMapper().writeValueAsString(requestedData);
         } catch (JsonProcessingException e) {
@@ -105,7 +108,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList());
     }
 
-    private RequestResponseDTO mapToDto(Request request, List<PharmacyResponseDTO> pharmacyResponseDTOS){
+    private RequestResponseDTO mapToRequestResponseDTO(Request request, List<PharmacyResponseDTO> pharmacyResponseDTOS){
         new RequestResponseDTO();
         return RequestResponseDTO.builder()
                 .requestId(request.getId())
@@ -114,6 +117,15 @@ public class CustomerServiceImpl implements CustomerService {
                 .pharmacyResponses(pharmacyResponseDTOS)
                 .createdAt(Instant.now())
                 .build();
+    }
+
+    @Override
+    public void createOrder(Long requestId, Long pharmacistId, boolean isDelivery) {
+        /*
+        1- Check if it's
+        2-
+        3-
+        */
     }
 
 }
