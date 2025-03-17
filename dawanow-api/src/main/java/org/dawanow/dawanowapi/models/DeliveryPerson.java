@@ -18,11 +18,8 @@ public class DeliveryPerson {
     @JoinColumn(name = "id")
     private User user;
 
-
     @Column(nullable = false, columnDefinition = "POINT SRID 4326")
     private Point locationCoordinates;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private Boolean isAvailable = true;
 
 }

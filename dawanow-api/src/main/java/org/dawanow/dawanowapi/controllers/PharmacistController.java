@@ -1,5 +1,6 @@
 package org.dawanow.dawanowapi.controllers;
 
+import org.dawanow.dawanowapi.dto.NearestDeliveryDTO;
 import org.dawanow.dawanowapi.dto.NearestProviderDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
@@ -31,10 +32,16 @@ public class PharmacistController {
     }
 
     @GetMapping("/nearest-providers")
-    public ResponseEntity<List<NearestProviderDTO>> getNearestPharmacies(
+    public ResponseEntity<List<NearestProviderDTO>> getNearestProviders(
             @RequestParam int pharmacyId,
             @RequestParam double radius) {
         return ResponseEntity.ok(pharmacistService.getNearestProviders(pharmacyId, radius));
+    }
+    @GetMapping("/nearest-deliveries")
+    public ResponseEntity<List<NearestDeliveryDTO>> getNearestDeliveries(
+            @RequestParam int pharmacyId,
+            @RequestParam double radius) {
+        return ResponseEntity.ok(pharmacistService.getNearestDelivery(pharmacyId, radius));
     }
 
 }

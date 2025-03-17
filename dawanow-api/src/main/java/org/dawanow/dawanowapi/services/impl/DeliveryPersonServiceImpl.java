@@ -19,13 +19,11 @@ public class DeliveryPersonServiceImpl implements DeliveryPersonService {
     public DeliveryRegisterResponseDTO registerDeliveryPerson(User user, DeliveryRegisterRequestDTO deliveryRegisterRequestDTO) {
         DeliveryPerson deliveryPerson = new DeliveryPerson();
         deliveryPerson.setUser(user);
-        deliveryPerson.setIsAvailable(true);
         deliveryPerson.setLocationCoordinates(locationService.createPoint(deliveryRegisterRequestDTO.getLongitude(),deliveryRegisterRequestDTO.getLatitude()));
         deliveryPersonRepository.save(deliveryPerson);
         return new DeliveryRegisterResponseDTO(
                 deliveryRegisterRequestDTO.getLongitude(),
-                deliveryRegisterRequestDTO.getLatitude(),
-                true
+                deliveryRegisterRequestDTO.getLatitude()
         );
     }
 
