@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services;
+package org.dawanow.dawanowapi.services.user;
 
 import org.dawanow.dawanowapi.dto.user.UserRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;

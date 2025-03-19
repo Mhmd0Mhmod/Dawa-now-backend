@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services;
+package org.dawanow.dawanowapi.services.pharmacist;
 
 import org.dawanow.dawanowapi.dto.NearestDeliveryDTO;
 import org.dawanow.dawanowapi.dto.NearestProviderDTO;

@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services;
+package org.dawanow.dawanowapi.services.deliveryperson;
 
 import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterResponseDTO;

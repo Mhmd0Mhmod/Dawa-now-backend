@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services;
+package org.dawanow.dawanowapi.services.pharmacistadmin;
 
 import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;

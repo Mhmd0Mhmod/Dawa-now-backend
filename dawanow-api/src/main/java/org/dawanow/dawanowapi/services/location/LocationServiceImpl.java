@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.location;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;

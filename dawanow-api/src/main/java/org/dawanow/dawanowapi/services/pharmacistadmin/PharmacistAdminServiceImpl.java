@@ -1,11 +1,11 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.pharmacistadmin;
 
 import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.user.UserRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.UserRole;
-import org.dawanow.dawanowapi.services.PharmacistAdminService;
-import org.dawanow.dawanowapi.services.UserService;
+import org.dawanow.dawanowapi.services.user.UserService;
+import org.dawanow.dawanowapi.services.location.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

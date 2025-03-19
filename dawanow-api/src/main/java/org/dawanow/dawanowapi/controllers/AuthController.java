@@ -9,7 +9,7 @@ import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
 import org.dawanow.dawanowapi.security.JwtTokenUtil;
 import org.dawanow.dawanowapi.security.UserPrincipal;
-import org.dawanow.dawanowapi.services.UserService;
+import org.dawanow.dawanowapi.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.pharmacist;
 
 import org.dawanow.dawanowapi.dto.NearestDeliveryDTO;
 import org.dawanow.dawanowapi.dto.NearestProviderDTO;
@@ -8,7 +8,7 @@ import org.dawanow.dawanowapi.models.Pharmacist;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.VerificationStatus;
 import org.dawanow.dawanowapi.repositories.PharmacistRepository;
-import org.dawanow.dawanowapi.services.PharmacistService;
+import org.dawanow.dawanowapi.services.location.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

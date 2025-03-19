@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.user;
 import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterResponseDTO;
 import org.dawanow.dawanowapi.dto.pharmacy.PharmacyRegisterResponseDTO;
 import org.dawanow.dawanowapi.dto.provider.ProviderRegisterResponseDTO;
@@ -7,7 +7,10 @@ import org.dawanow.dawanowapi.dto.user.UserRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.models.UserRole;
 import org.dawanow.dawanowapi.repositories.UserRepository;
-import org.dawanow.dawanowapi.services.*;
+import org.dawanow.dawanowapi.services.customer.CustomerService;
+import org.dawanow.dawanowapi.services.deliveryperson.DeliveryPersonService;
+import org.dawanow.dawanowapi.services.pharmacist.PharmacistService;
+import org.dawanow.dawanowapi.services.provider.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

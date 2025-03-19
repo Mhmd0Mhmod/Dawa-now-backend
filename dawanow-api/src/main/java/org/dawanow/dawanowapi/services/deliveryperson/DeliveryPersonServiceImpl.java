@@ -1,11 +1,11 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.deliveryperson;
 
 import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterRequestDTO;
 import org.dawanow.dawanowapi.dto.delivery.DeliveryRegisterResponseDTO;
 import org.dawanow.dawanowapi.models.DeliveryPerson;
 import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.repositories.DeliveryPersonRepository;
-import org.dawanow.dawanowapi.services.DeliveryPersonService;
+import org.dawanow.dawanowapi.services.location.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

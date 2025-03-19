@@ -1,4 +1,4 @@
-package org.dawanow.dawanowapi.services.impl;
+package org.dawanow.dawanowapi.services.customer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ import org.dawanow.dawanowapi.models.User;
 import org.dawanow.dawanowapi.repositories.CustomerRepository;
 import org.dawanow.dawanowapi.repositories.RequestRepository;
 import org.dawanow.dawanowapi.repositories.UserRepository;
-import org.dawanow.dawanowapi.services.CustomerService;
+import org.dawanow.dawanowapi.services.location.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
