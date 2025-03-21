@@ -2,6 +2,8 @@ package org.dawanow.dawanowapi.controllers;
 
 
 import org.dawanow.dawanowapi.dto.NearestPharmacyDTO;
+import org.dawanow.dawanowapi.dto.request.OrderResponseDTO;
+import org.dawanow.dawanowapi.dto.request.OrderSubmissionDTO;
 import org.dawanow.dawanowapi.dto.request.RequestResponseDTO;
 import org.dawanow.dawanowapi.dto.request.RequestSubmissionDTO;
 import org.dawanow.dawanowapi.models.User;
@@ -34,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/nearest-pharmacies")
     public ResponseEntity<List<NearestPharmacyDTO>> getNearestPharmacies(
-            @RequestParam long requestId,
+            @RequestParam Long requestId,
             @RequestParam double radius) {
         return ResponseEntity.ok(customerService.getNearestPharmacies(requestId, radius));
     }
@@ -50,6 +52,20 @@ public class CustomerController {
         );
 
         return ResponseEntity.ok(request);
+    }
+
+    @PostMapping("/confirm-order")
+    public ResponseEntity<OrderResponseDTO> confirmOrder(
+            @RequestBody OrderSubmissionDTO confirmRequestDTO
+    ){
+        OrderResponseDTO orderResponseDTO = customerService.createOrder(confirmRequestDTO.getRequestId(),
+                confirmRequestDTO.getPharmacyResponses(),
+                confirmRequestDTO.getPharmacyId(),
+                confirmRequestDTO.isDelivery());
+
+
+        return ResponseEntity.ok(orderResponseDTO);
+
     }
 
 
