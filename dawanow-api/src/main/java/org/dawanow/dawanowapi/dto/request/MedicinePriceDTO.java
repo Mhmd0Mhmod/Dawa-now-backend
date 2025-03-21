@@ -13,9 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicinePriceDTO {
+    private Long id;
     private String medicine;
     private int quantity;
     private double price;
+    private boolean isTape;
 
     public static List<MedicinePriceDTO> getRequestDataAsObject(Request request) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -26,5 +28,5 @@ public class MedicinePriceDTO {
             throw new RuntimeException("Failed to parse request data", e);
         }
     }
-
+    private List<AlternativeMedicineDTO> alternatives;
 }
