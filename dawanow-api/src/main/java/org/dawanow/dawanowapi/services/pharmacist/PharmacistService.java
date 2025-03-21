@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface PharmacistService {
 
-    List<NearestProviderDTO> getNearestProviders(int pharmacyId, double radius);
-    List<NearestDeliveryDTO> getNearestDelivery(int pharmacyId, double radius);
+    List<NearestProviderDTO> getNearestProviders(Long pharmacyId, double radius);
+    List<NearestDeliveryDTO> getNearestDelivery(Long pharmacyId, double radius);
     PharmacyRegisterResponseDTO registerPharmacist(User user, PharmacyRegisterRequestDTO requestDTO);
 
 }

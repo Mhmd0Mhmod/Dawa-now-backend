@@ -16,13 +16,13 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "request_id", nullable = false)
-    private Integer requestId;
+    private Long requestId;
 
     @Column(name = "total_amount", nullable = false)
-    private Float totalAmount;
+    private Double totalAmount;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -31,7 +31,8 @@ public class Order {
     private Boolean isDelivery;
 
     @Column(name = "order_status", nullable = false, length = 50)
-    private String orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;

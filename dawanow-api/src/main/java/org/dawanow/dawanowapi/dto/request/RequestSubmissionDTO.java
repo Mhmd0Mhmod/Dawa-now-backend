@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class RequestSubmissionDTO {
-    private long senderId;
+    private Long senderId;
     private double longitude;
     private double latitude;
     private String address;

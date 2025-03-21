@@ -16,17 +16,17 @@ public class OrderAssignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     @Column(name = "pharmacist_id", nullable = false)
-    private Integer pharmacistId;
+    private Long pharmacistId;
 
     @Column(name = "delivery_id")
-    private Integer deliveryId;
+    private Long deliveryId;
 
     @Column(name = "assigned_at", nullable = false, updatable = false)
     private LocalDateTime assignedAt = LocalDateTime.now();

@@ -33,13 +33,13 @@ public class PharmacistController {
 
     @GetMapping("/nearest-providers")
     public ResponseEntity<List<NearestProviderDTO>> getNearestProviders(
-            @RequestParam int pharmacyId,
+            @RequestParam Long pharmacyId,
             @RequestParam double radius) {
         return ResponseEntity.ok(pharmacistService.getNearestProviders(pharmacyId, radius));
     }
     @GetMapping("/nearest-deliveries")
     public ResponseEntity<List<NearestDeliveryDTO>> getNearestDeliveries(
-            @RequestParam int pharmacyId,
+            @RequestParam Long pharmacyId,
             @RequestParam double radius) {
         return ResponseEntity.ok(pharmacistService.getNearestDelivery(pharmacyId, radius));
     }

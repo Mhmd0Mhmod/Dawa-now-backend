@@ -24,9 +24,8 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Lazy loading
+    @ManyToOne()
     @JoinColumn(name = "sender_id", nullable = false)
-    @JsonIgnore // Prevent Jackson from serializing this field
     private User sender;
 
     @Column(name = "location_coordinates", columnDefinition = "POINT SRID 4326", nullable = false)

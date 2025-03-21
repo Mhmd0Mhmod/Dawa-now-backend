@@ -27,7 +27,7 @@ public class PharmacistServiceImpl implements PharmacistService {
     }
 
     @Override
-    public List<NearestProviderDTO> getNearestProviders(int pharmacyId, double radius) {
+    public List<NearestProviderDTO> getNearestProviders(Long pharmacyId, double radius) {
         List<Object[]> results = pharmacistRepository.getNearestProviders(pharmacyId, radius);
         return results.stream().map(row -> new NearestProviderDTO(
                 (String) row[0],
@@ -36,7 +36,7 @@ public class PharmacistServiceImpl implements PharmacistService {
     }
 
     @Override
-    public List<NearestDeliveryDTO> getNearestDelivery(int pharmacyId, double radius) {
+    public List<NearestDeliveryDTO> getNearestDelivery(Long pharmacyId, double radius) {
         List<Object[]> results = pharmacistRepository.getNearestDeliveries(pharmacyId,radius);
         return results.stream().map(row -> new NearestDeliveryDTO(
                 (String) row[0],
